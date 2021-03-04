@@ -8,15 +8,15 @@ public class TestEnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var target = collision.GetComponent<EnemyHealth>();
+        var target = collision.GetComponent<Enemy>();
 
         if (collision.tag != "Enemy")
         {
             if (collision.tag == "Player")
             {
                 PlayerStats.playerStats.DealDamage(damage); 
-
             }
+
             Destroy(gameObject);
         }
     }

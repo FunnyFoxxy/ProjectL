@@ -10,12 +10,16 @@ public class PlayerStats : MonoBehaviour
     public Text healthText;
     public Slider healthSlider;
     public GameObject player;
-    public int gold;
-    public int game;
+    public Text coinText;
+    public Text soulText;
+    public int coins;
+    public int souls;
+    public GameObject[] Subjects;
+   
     public float health;
     public float maxHealth;
 
-   
+    public bool keyLocation;
     // Start is called before the first frame update
 
     private void Awake()
@@ -28,7 +32,6 @@ public class PlayerStats : MonoBehaviour
         {
             playerStats = this;
         }
-
         DontDestroyOnLoad(this);
     }
     void Start()
@@ -41,7 +44,6 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         CheckDeath();
-
     }
 
     void CheckOverHeal()
@@ -87,5 +89,19 @@ public class PlayerStats : MonoBehaviour
     private float CalculateHealPercentage()
     {
         return (health / maxHealth);
+    }
+    
+    public void AddCurrency(CurrencyPickup currency)
+    {
+        if(currency.currentPickup == CurrencyPickup.PickupObject.COIN)
+        {
+            coins += currency.pickQuantity;
+            coinText.text = this.coins.ToString();
+        }
+        else if(currency.currentPickup == CurrencyPickup.PickupObject.SOUL)
+        {
+            souls += currency.pickQuantity;
+            soulText.text = this.souls.ToString();
+        }
     }
 }

@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Spell
+  - Rooms
+  - RoomPoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - GamesObjectsWithCollicion
   - Water
   - UI
   - 

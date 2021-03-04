@@ -43,27 +43,80 @@ public class PlayerMovement : MonoBehaviour
     {
         direction = Vector2.zero;
 
+        //if (Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W)))
+        //{
+        //    if(Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.S)))
+        //     {
+        //        direction += Vector2.down;
+        //        direction += Vector2.right;
+        //        FacingDir = Facing.RIGHT;
+        //    }
+        //    else
+        //    {
+        //        direction += Vector2.up;
+        //        direction += Vector2.right;
+        //        FacingDir = Facing.RIGHT;
+        //    }
+        //}
+        //else if (Input.GetKey(KeyCode.A) && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W)))
+        //{
+        //    if (Input.GetKey(KeyCode.A) && (Input.GetKey(KeyCode.S)))
+        //    {
+        //        direction += Vector2.down;
+        //        direction += Vector2.left;
+        //        FacingDir = Facing.LEFT;
+        //    }
+        //    else
+        //    {
+        //        direction += Vector2.up;
+        //        direction += Vector2.left;
+        //        FacingDir = Facing.LEFT;
+        //    }
+        //}
+        //else if(Input.GetKey(KeyCode.D))
+        //{
+        //    direction += Vector2.right;
+        //    FacingDir = Facing.RIGHT;
+        //}
+        //else if (Input.GetKey(KeyCode.S))
+        //{
+        //    direction += Vector2.down;
+        //    FacingDir = Facing.DOWN;
+        //}
+        //else if (Input.GetKey(KeyCode.W))
+        //{
+        //    direction += Vector2.up;
+        //    FacingDir = Facing.UP;
+        //}
+        //else if (Input.GetKey(KeyCode.A))
+        //{
+        //    direction += Vector2.left;
+        //    FacingDir = Facing.LEFT;
+        //}
+
+       
+        if (Input.GetKey(KeyCode.S))
+        {
+            direction += Vector2.down;
+            FacingDir = Facing.DOWN;
+        }
         if (Input.GetKey(KeyCode.W))
         {
             direction += Vector2.up;
             FacingDir = Facing.UP;
-
         }
         if (Input.GetKey(KeyCode.A))
         {
             direction += Vector2.left;
             FacingDir = Facing.LEFT;
         }
-        if (Input.GetKey(KeyCode.S))
-        {
-           direction += Vector2.down;
-            FacingDir = Facing.DOWN;
-        }
         if (Input.GetKey(KeyCode.D))
         {
             direction += Vector2.right;
             FacingDir = Facing.RIGHT;
         }
+
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             targetPos = transform.position;
@@ -92,7 +145,44 @@ public class PlayerMovement : MonoBehaviour
     void SetAnimatorMovement(Vector2 direction)
     {
         animator.SetLayerWeight(1, 1);
-        animator.SetFloat("xDir", direction.x);
-        animator.SetFloat("yDir", direction.y);
+        
+        if (FacingDir == Facing.LEFT)
+        {
+            animator.SetFloat("xDir", direction.x);
+            animator.SetFloat("yDir", 0);
+        }
+        else if(FacingDir == Facing.RIGHT)
+        {
+            animator.SetFloat("xDir", direction.x);
+            animator.SetFloat("yDir", 0);
+        }
+        else if(FacingDir == Facing.UP)
+        {
+            animator.SetFloat("yDir", direction.y);
+            animator.SetFloat("xDir", 0);
+        }
+    
+        else if (FacingDir == Facing.DOWN)
+        {
+            animator.SetFloat("yDir", direction.y);
+            animator.SetFloat("xDir", 0);
+        }
+        //switch (FacingDir)
+        //{
+        //    case Facing.LEFT:
+        //        animator.SetFloat("xDir", direction.x);
+        //        break;
+        //    case Facing.RIGHT:
+        //        animator.SetFloat("xDir", direction.x);
+        //        break;
+        //    case Facing.UP:
+        //        animator.SetFloat("yDir", direction.y);
+        //        break;
+        //    case Facing.DOWN:
+        //        animator.SetFloat("yDir", direction.y);
+        //        break;
+        //}
+        //animator.SetFloat("xDir", direction.x);
+        //animator.SetFloat("yDir", direction.y);
     }
 }

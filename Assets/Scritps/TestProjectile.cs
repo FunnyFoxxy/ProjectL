@@ -8,7 +8,7 @@ public class TestProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var target = collision.GetComponent<EnemyHealth>();
+        var target = collision.GetComponent<Enemy>();
 
         if (collision.name != "Player")
         {
